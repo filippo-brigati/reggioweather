@@ -3,7 +3,7 @@ import LeftComponent from '../components/left'
 import RightComponet from '../components/right'
 
 export async function getStaticProps(context) {
-  const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=Reggio%20Emilia&units=metric&appid=d223d72ce260e9719c1aa55a155ffcf9`)
+  const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=Reggio%20Emilia&units=metric&appid=${process.env.REACT_APP_TOKEN_API}`)
   const data = await res.json()
 
   if (!data) {
@@ -31,7 +31,7 @@ export default function Home({ data }) {
   else if(data.weather[0].id >= 200 && data.weather[0].id <= 232) { iconPath += 'poo-storm-solid.svg' }
   else { iconPath += 'error.svg' }
 
-  console.log(iconPath)
+  //console.log(iconPath)
 
   return (
     <>
