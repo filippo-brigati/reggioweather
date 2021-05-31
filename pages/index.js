@@ -27,22 +27,24 @@ export default function Home({ data }) {
         <title>Reggio Emilia Weather</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="w-full md:h-screen flex items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
-        <div className="grid grid-cols-1 md:grid-cols-3 shadow-xl rounded-lg" style={{ maxWidth: 1000 }}>
-          <div className="flex col-span-1 p-16 md:p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600 items-center justify-center">
-              <LeftComponent props={{ condition: data.current.weather[0].main, icon_id: data.current.weather[0].id }} />
+      <div className="w-full min-h-screen bg-white dark:bg-gray-600 flex justify-center">
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-3 mt-0 pb-8 md:pb-0 md:mt-32 shadow-lg rounded-lg bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50" style={{ maxWidth: 900 }}>
+          <div className="col-span-1 p-10 bg-white dark:bg-gray-700">
+            <LeftComponent props={{ condition: data.current.weather[0].main, icon_id: data.current.weather[0].id }} />
           </div>
-          <div className="flex col-span-1 md:col-span-2 p-16 md:p-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50 justify-center items-center">
-              <RightComponet props={{ temp: data.current.temp.toFixed(1), feelTemp: data.current.feels_like.toFixed(1), hum: data.current.humidity.toFixed(1), t_max: data.daily[0].temp.max, t_min: data.daily[0].temp.min }}/>
+          <div className="col-span-1 md:col-span-2 p-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50">
+            <RightComponet props={{ temp: data.current.temp.toFixed(1), feelTemp: data.current.feels_like.toFixed(1), hum: data.current.humidity.toFixed(1), t_max: data.daily[0].temp.max, t_min: data.daily[0].temp.min }}/>
           </div>
-          <div className="col-span-1 md:col-span-3 w-full grid grid-cols-1 md:grid-cols-7 gap-4">
-            {days.map((day) => {
-              return (
-                <div key={day.dt} className="col-span-1 hover:bg-gray-700 py-2 md:py-6">
-                  <Daily props={day} />
-                </div>
-              )
-            })}
+          <div className="col-span-1 md:col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-7">
+              {days.map((day) => {
+                return (
+                  <div key={day.dt} className="col-span-1 hover:bg-gray-700 py-2 md:py-6">
+                    <Daily props={day} />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
