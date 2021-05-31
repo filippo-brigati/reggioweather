@@ -2,7 +2,7 @@ import Head from 'next/head'
 import LeftComponent from '../components/left'
 import RightComponet from '../components/right'
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=Reggio%20Emilia&units=metric&appid=${process.env.REACT_APP_TOKEN_API}`)
   const data = await res.json()
 
@@ -13,8 +13,7 @@ export async function getStaticProps(context) {
   }
 
   return {
-    props: { data }, // will be passed to the page component as props
-    revalidate: 1,
+    props: { data } // will be passed to the page component as props
   }
 }
 
