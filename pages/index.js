@@ -39,3 +39,5 @@ export default function Home({ data }) {
     </>
   )
 }
+
+//TO-DO: https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&units=metric&exclude=minutely,hourly&appid=${process.env.REACT_APP_TOKEN_API}
