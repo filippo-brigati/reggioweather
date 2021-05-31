@@ -25,7 +25,6 @@ export default function Home({ data }) {
     <>
       <Head>
         <title>Reggio Emilia Weather</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="w-full min-h-screen bg-white dark:bg-gray-600 flex justify-center">
         <div className="w-full h-full grid grid-cols-1 md:grid-cols-3 mt-0 pb-8 md:pb-0 md:mt-32 shadow-lg rounded-lg bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50" style={{ maxWidth: 900 }}>
