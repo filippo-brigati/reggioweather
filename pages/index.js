@@ -31,10 +31,10 @@ export default function Home({ data }) {
       </Head>
       <div className="min-w-full min-h-screen flex md:items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
         <div className="w-full grid grid-cols-1 md:grid-cols-3 overflow-hidden shadow-xl rounded-lg" style={{ maxWidth: 900 }}>
-              <div className="flex col-span-1 p-16 md:p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600 items-center justify-center">
+              <div className="col-span-1 p-16 md:p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600">
                   <LeftComponent props={{ condition: data.current.weather[0].main, icon_id: data.current.weather[0].id }} />
               </div>
-              <div className="flex col-span-1 md:col-span-2 p-16 md:p-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50 justify-center items-center">
+              <div className="col-span-1 md:col-span-2 p-16 md:p-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50">
                   <RightComponet props={{ temp: data.current.temp.toFixed(1), feelTemp: data.current.feels_like.toFixed(1), hum: data.current.humidity.toFixed(1), t_max: data.daily[0].temp.max, t_min: data.daily[0].temp.min }}/>
               </div>
               <div className="col-span-1 md:col-span-3 w-full grid grid-cols-1 md:grid-cols-7 gap-4">
