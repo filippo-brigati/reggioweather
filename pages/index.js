@@ -30,7 +30,7 @@ export default function Home({ data }) {
         <title>Reggio Emilia Weather</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="w-full md:h-screen flex items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
+      <div className="min-w-screen min-h-screen flex items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
         <div className="grid grid-cols-1 md:grid-cols-3 shadow-xl rounded-lg" style={{ maxWidth: 1000 }}>
               <div className="flex col-span-1 p-16 md:p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600 items-center justify-center">
                   <LeftComponent props={{ condition: data.current.weather[0].main, icon_id: data.current.weather[0].id }} />
