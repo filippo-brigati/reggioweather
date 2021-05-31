@@ -29,8 +29,8 @@ export default function Home({ data }) {
       <Head>
         <title>Reggio Emilia Weather</title>
       </Head>
-      <div className="w-full flex md:items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
-        <div className="grid grid-cols-1 md:grid-cols-3 shadow-xl rounded-lg" style={{ maxWidth: 900 }}>
+      <div className="min-w-full min-h-screen flex md:items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 overflow-hidden shadow-xl rounded-lg" style={{ maxWidth: 900 }}>
               <div className="flex col-span-1 p-16 md:p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600 items-center justify-center">
                   <LeftComponent props={{ condition: data.current.weather[0].main, icon_id: data.current.weather[0].id }} />
               </div>
