@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import LeftComponent from '../components/left'
 import RightComponet from '../components/right'
-import Daily from '../components/daily'
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=44.69825&lon=10.63125&units=metric&exclude=minutely,hourly&appid=${process.env.REACT_APP_TOKEN_API}`)
+  const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=Reggio%20Emilia&units=metric&appid=${process.env.REACT_APP_TOKEN_API}`)
   const data = await res.json()
 
   if (!data) {
@@ -21,55 +20,24 @@ export async function getServerSideProps(context) {
 export default function Home({ data }) {
   //console.log(data)
 
-  const days = data.daily.slice(1, 8)
-  //console.log(days)
-
   return (
     <>
       <Head>
         <title>Reggio Emilia Weather</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="min-w-full min-h-screen flex items-center justify-center bg-white dark:bg-gray-600">
-        <div className="grid grid-cols-1 md:grid-cols-3 shadow-xl rounded-lg" style={{ maxWidth: 900 }}>
-          <div className="col-span-1 p-16 md:p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600">
-              <LeftComponent props={{ condition: data.current.weather[0].main, icon_id: data.current.weather[0].id }} />
+      <div className="min-w-screen min-h-screen flex items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
+          <div className="shadow-xl overflow-hidden w-full md:flex rounded-lg" style={{ maxWidth: 900 }}>
+              <div className="flex w-full md:w-1/3 p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600 items-center justify-center">
+                  <LeftComponent props={{ name: data.name, state: data.sys.country, condition: data.weather[0].main, icon_id: data.weather[0].id }} />
+              </div>
+              <div className="flex w-full md:w-2/3 p-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50 justify-center items-center">
+                  <RightComponet props={{ temp: data.main.temp.toFixed(1), feelTemp: data.main.feels_like.toFixed(1), t_max: data.main.temp_max.toFixed(1), t_min: data.main.temp_min.toFixed(1), hum: data.main.humidity.toFixed(1) }}/>
+              </div>
           </div>
-          <div className="col-span-1 md:col-span-2 p-16 md:p-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50">
-              <RightComponet props={{ temp: data.current.temp.toFixed(1), feelTemp: data.current.feels_like.toFixed(1), hum: data.current.humidity.toFixed(1), t_max: data.daily[0].temp.max, t_min: data.daily[0].temp.min }}/>
-          </div>
-          <div className="col-span-1 md:col-span-3 grid grid-cols-1 md:grid-cols-7 gap-4">
-            {days.map((day) => {
-              return (
-                <div key={day.dt} className="col-span-1 hover:bg-gray-700 py-2 md:py-6">
-                  <Daily props={day} />
-                </div>
-              )
-            })}
-          </div>
-        </div>
       </div>
     </>
   )
 }
 
-/*
-      <div className="min-w-full min-h-screen flex items-center justify-center px-5 py-5 bg-white dark:bg-gray-600">
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 overflow-hidden shadow-xl rounded-lg" style={{ maxWidth: 900 }}>
-              <div className="flex col-span-1 p-16 md:p-10 bg-white dark:bg-gray-700 dark:text-gray-50 text-gray-600 items-center justify-center">
-                  <LeftComponent props={{ condition: data.current.weather[0].main, icon_id: data.current.weather[0].id }} />
-              </div>
-              <div className="flex col-span-1 md:col-span-2 p-16 md:p-10 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-50 justify-center items-center">
-                  <RightComponet props={{ temp: data.current.temp.toFixed(1), feelTemp: data.current.feels_like.toFixed(1), hum: data.current.humidity.toFixed(1), t_max: data.daily[0].temp.max, t_min: data.daily[0].temp.min }}/>
-              </div>
-              <div className="col-span-1 md:col-span-3 w-full grid grid-cols-1 md:grid-cols-7 gap-4">
-                {days.map((day) => {
-                  return (
-                    <div key={day.dt} className="col-span-1 hover:bg-gray-700 py-2 md:py-6">
-                      <Daily props={day} />
-                    </div>
-                  )
-                })}
-              </div>
-        </div>
-      </div>
-*/
+//TO-DO: https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&units=metric&exclude=minutely,hourly&appid=${process.env.REACT_APP_TOKEN_API}
