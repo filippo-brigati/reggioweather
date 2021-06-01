@@ -38,7 +38,7 @@ export default function Home({ data }) {
             <div className="grid grid-cols-1 md:grid-cols-7">
               {days.map((day) => {
                 return (
-                  <div key={day.dt} className="col-span-1 hover:bg-gray-200 dark:hover:bg-gray-700 py-2 md:py-6">
+                  <div key={day.dt} className="col-span-1 hover:bg-gray-300 dark:hover:bg-gray-700 py-2 md:py-6">
                     <Daily props={day} />
                   </div>
                 )
